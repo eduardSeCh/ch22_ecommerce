@@ -7,4 +7,6 @@ import org.generation.app.model.Customer;
 public interface ICustomerService {
 	public List<Customer> getAllCustomers();
 	public List<Customer> getAllActiveCustomers();
+	public Customer getCustomerById(long idCustomer);
+	public Customer setCustomer(Customer customer);
 }

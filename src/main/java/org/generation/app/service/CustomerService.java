@@ -25,4 +25,17 @@ public class CustomerService implements ICustomerService{
 		return allActiveCustomers;
 	}
 
+	@Override
+	public Customer getCustomerById(long idCustomer) {
+		return customerRepository.findById(idCustomer)
+				.orElseThrow(() -> new IllegalStateException("The user is no found..."));
+	}
+	
+	@Override
+	public Customer setCustomer(Customer customer) {
+		Customer newCustomer = customer;
+		newCustomer.setActive(true);
+		return customerRepository.save(newCustomer);
+	}
+
 }

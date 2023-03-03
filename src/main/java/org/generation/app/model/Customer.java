@@ -15,8 +15,8 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_customer")
 	private long idCustomer;
-	@Column(name="fist_name",nullable = false, length = MAX_LENGTH)
-	private String fistName;
+	@Column(name="first_name",nullable = false, length = MAX_LENGTH)
+	private String firstName;
 	@Column(name="last_name", length = MAX_LENGTH)
 	private String lastName;
 	@Column(name="email",updatable = false,unique = true, length = MAX_LENGTH)
@@ -28,11 +28,19 @@ public class Customer {
 	@Column(name="is_active")
 	private boolean active;
 	
+	
+	
+	public long getIdCustomer() {
+		return idCustomer;
+	}
+	public void setIdCustomer(long idCustomer) {
+		this.idCustomer = idCustomer;
+	}
 	public String getFistName() {
-		return fistName;
+		return firstName;
 	}
 	public void setFistName(String fistName) {
-		this.fistName = fistName;
+		this.firstName = fistName;
 	}
 	public String getLastName() {
 		return lastName;

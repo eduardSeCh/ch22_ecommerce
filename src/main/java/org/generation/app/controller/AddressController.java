@@ -2,14 +2,11 @@ package org.generation.app.controller;
 
 import java.util.List;
 
-import org.generation.app.dto.CustomerDto;
-import org.generation.app.model.Customer;
-import org.generation.app.service.ICustomerService;
+import org.generation.app.model.Address;
+import org.generation.app.service.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,29 +17,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/customers")
-@CrossOrigin(origins = "*") //colocar URL para inter de servidores (solicitud cruzada)
-public class CustomerController {
-	
+@RequestMapping("api/address")
+public class AddressController {
 	@Autowired
-	ICustomerService customerService;
+	IAddressService addressService;
 	
-	//@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')") .Despues quitar esto
 	@GetMapping()
-	public List<CustomerDto> getAllCustomers(){
-		return customerService.getAllCustomersDto();
+	public List<Address> getAlladdresss(){
+		return addressService.getAllAddress();
 	}
 	
 	@GetMapping("active")
-	public List<Customer> getAllActioveCustomers(){
-		return customerService.getAllActiveCustomers();
+	public List<Address> getAllActioveaddresss(){
+		return addressService.getAllActiveAddress();
 	} 
 	
 	@GetMapping("{id}")
-	public ResponseEntity<?> getCustomerById(@PathVariable("id") long idCustomer) {
+	public ResponseEntity<?> getaddressById(@PathVariable("id") long idaddress) {
 		try {
-			return new ResponseEntity<CustomerDto>(
-					customerService.getCustomerDtoById(idCustomer),
+			return new ResponseEntity<Address>(
+					addressService.getAddressById(idaddress),
 					HttpStatus.OK
 					);
 		} catch (IllegalStateException e) {
@@ -52,10 +46,10 @@ public class CustomerController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> setNewCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<?> setNewaddress(@RequestBody Address address) {
 		try {
-			return new ResponseEntity<Customer>(
-					customerService.setCustomer(customer),
+			return new ResponseEntity<Address>(
+					addressService.setAddress(address),
 					HttpStatus.CREATED
 					);
 		} catch (IllegalStateException e) {
@@ -64,10 +58,10 @@ public class CustomerController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> updateCustomer(@RequestBody Customer customer){
+	public ResponseEntity<?> updateaddress(@RequestBody Address address){
 		try {
-			return new ResponseEntity<Customer>(
-					customerService.updateCustomer(customer), 
+			return new ResponseEntity<Address>(
+					addressService.updateAddress(address), 
 					HttpStatus.CREATED
 					);
 		} catch (IllegalStateException e) {
@@ -76,15 +70,21 @@ public class CustomerController {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> deleteCustomerById(@PathVariable("id") long idCustomer) {
+	public ResponseEntity<?> deleteaddressById(@PathVariable("id") long idaddress) {
 		try {
 			return new ResponseEntity<String>(
-					customerService.deleteCustomerById(idCustomer),
+					addressService.deleteAddressById(idaddress),
 					HttpStatus.OK
 					);
 		} catch (IllegalStateException e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
-		}
-		
+		}	
 	}
+	
+	
+	  @GetMapping("/customer/{id}") public List<Address>
+	  getAllAdrressesByFkIdCustomer(@PathVariable("id") long idCustomer){
+		  return (List<Address>) addressService.getAllAddreessByFkIdCustomer(idCustomer); 
+	  }
+	 
 }

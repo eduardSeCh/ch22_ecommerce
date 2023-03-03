@@ -8,14 +8,6 @@ group = 'org.generation'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
-jar {
-    manifest {
-        attributes(
-            'Main-Class': 'org.generation.app.Ch22EcommerceApplication.java'
-        )
-    }
-}
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor

@@ -97,9 +97,9 @@ public class WebSecurityConfig {
 	public PasswordEncoder passEncoder() {
 		return new BCryptPasswordEncoder(); //Encriptar password
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("Passowrd: "+ new BCryptPasswordEncoder().encode("fierro"));
-	}
+	/*
+	 * public static void main(String[] args) { System.out.println("Passowrd: "+ new
+	 * BCryptPasswordEncoder().encode("fierro")); }
+	 */
 	
 }

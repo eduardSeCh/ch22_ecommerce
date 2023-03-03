@@ -1,1 +1,7 @@
-web: java -jar build/libs/ch22-ecommerce-0.0.1-SNAPSHOT.jar
+#web: java -jar build/libs/ch22-ecommerce-0.0.1-SNAPSHOT.jar
+
+# Instalar dependencias y compilar la aplicación
+gradle build
+
+# Ejecutar la aplicación
+java -jar build/libs/ch22-ecommerce-0.0.1-SNAPSHOT.jar
